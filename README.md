@@ -46,11 +46,11 @@ git clone https://github.com/siimvene/SwarmOps.git
 cd SwarmOps
 ./install.sh
 
-# Start the dashboard
-cd dashboard && pnpm dev
+# Start the server
+cd dashboard && node .output/server/index.mjs
 ```
 
-The dashboard runs on `http://localhost:3939` by default.
+The dashboard runs on `http://localhost:3000` by default.
 
 ### Requirements
 

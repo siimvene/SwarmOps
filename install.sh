@@ -43,6 +43,12 @@ cd dashboard
 pnpm install
 echo -e "${GREEN}✓ Dependencies installed${NC}"
 
+# Build for production
+echo
+echo -e "${YELLOW}→ Building for production...${NC}"
+pnpm build
+echo -e "${GREEN}✓ Production build complete${NC}"
+
 # Create .env if not exists
 if [ ! -f .env ]; then
     if [ -f .env.example ]; then
@@ -110,9 +116,9 @@ echo
 echo "Next steps:"
 echo "  1. Make sure OpenClaw Gateway is running on port 18789"
 echo "  2. Edit dashboard/.env if needed"
-echo "  3. Start the dashboard:"
+echo "  3. Start the server:"
 echo
-echo "     cd dashboard && pnpm dev"
+echo "     cd dashboard && node .output/server/index.mjs"
 echo
-echo "  Dashboard will be available at http://localhost:3939"
+echo "  Dashboard will be available at http://localhost:3000"
 echo
