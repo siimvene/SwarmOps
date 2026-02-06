@@ -25,7 +25,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     // Server-side only (set via env vars in production)
-    projectsDir: process.env.PROJECTS_DIR || '/home/siim/swarmops/projects',
+    projectsDir: process.env.PROJECTS_DIR || './projects',
     gatewayUrl: process.env.OPENCLAW_GATEWAY_URL || 'http://127.0.0.1:18789',
     gatewayToken: process.env.OPENCLAW_GATEWAY_TOKEN || ''
   },

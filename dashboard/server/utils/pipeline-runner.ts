@@ -35,7 +35,7 @@ import {
 } from './retry-handler'
 import { createEscalation } from './escalation-store'
 
-const DATA_DIR = process.env.SWARMOPS_DATA_DIR || '/home/siim/swarmops/data/orchestrator'
+const DATA_DIR = process.env.ORCHESTRATOR_DATA_DIR || './data/orchestrator'
 const RUNS_DIR = join(DATA_DIR, 'runs')
 
 export interface PipelineStep {

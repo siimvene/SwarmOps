@@ -22,7 +22,7 @@ interface ActivityEvent {
 
 export default defineEventHandler(async (event): Promise<ActivityEvent[]> => {
   const config = useRuntimeConfig(event)
-  const projectsDir = config.projectsDir || '/home/siim/swarmops/projects'
+  const projectsDir = config.projectsDir || process.env.PROJECTS_DIR || './projects'
 
   try {
     const entries = await readdir(projectsDir, { withFileTypes: true })

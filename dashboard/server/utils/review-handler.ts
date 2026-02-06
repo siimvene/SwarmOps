@@ -1,3 +1,4 @@
+import { ORCHESTRATOR_DATA_DIR } from '~/server/utils/paths'
 /**
  * ReviewHandler - Manages review result processing and fix cycles
  * 
@@ -19,7 +20,7 @@ import { checkoutBranch, mergeBranch, branchExists, getCurrentBranch } from './c
 
 const exec = promisify(execCallback)
 
-const DATA_DIR = '/home/siim/swarmops/data/orchestrator'
+const DATA_DIR = ORCHESTRATOR_DATA_DIR
 const FIX_CYCLES_PATH = join(DATA_DIR, 'fix-cycles.json')
 
 export interface FixCycle {

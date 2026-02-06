@@ -1,3 +1,4 @@
+import { PROJECTS_DIR as PROJ_DIR } from '~/server/utils/paths'
 /**
  * Phase Watcher - Automatic phase advancement service
  * 
@@ -19,7 +20,7 @@ import {
 import { parseTaskGraph, getReadyTasks } from './orchestrator'
 
 const POLL_INTERVAL_MS = 30_000 // 30 seconds
-const PROJECTS_DIR = '/home/siim/swarmops/projects'
+const PROJECTS_DIR = PROJ_DIR
 
 let pollInterval: ReturnType<typeof setInterval> | null = null
 let isPolling = false

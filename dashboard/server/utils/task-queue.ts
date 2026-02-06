@@ -1,3 +1,4 @@
+import { ORCHESTRATOR_DATA_DIR } from '~/server/utils/paths'
 /**
  * TaskQueue - Manages work-queue.json for dashboard visibility
  * 
@@ -8,7 +9,7 @@
 import { readFile, writeFile, mkdir } from 'fs/promises'
 import { join, dirname } from 'path'
 
-const QUEUE_PATH = '/home/siim/swarmops/data/orchestrator/work-queue.json'
+const QUEUE_PATH = join(ORCHESTRATOR_DATA_DIR, 'work-queue.json')
 
 export interface Task {
   id: string

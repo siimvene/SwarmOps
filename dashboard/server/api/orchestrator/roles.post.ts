@@ -1,10 +1,11 @@
+import { ORCHESTRATOR_DATA_DIR } from '~/server/utils/paths'
 import { invalidateRoleCache } from '../../utils/role-loader'
 import { readFile, writeFile } from 'fs/promises'
 import { join } from 'path'
 import { randomUUID } from 'crypto'
 import { requireAuth } from '../../utils/security'
 
-const DATA_DIR = '/home/siim/swarmops/data/orchestrator'
+const DATA_DIR = ORCHESTRATOR_DATA_DIR
 
 interface Role {
   id: string

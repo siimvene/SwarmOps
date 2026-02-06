@@ -1,7 +1,8 @@
+import { ORCHESTRATOR_DATA_DIR } from '~/server/utils/paths'
 import { readdir, readFile } from 'fs/promises'
 import { join } from 'path'
 
-const DATA_DIR = '/home/siim/swarmops/data/orchestrator'
+const DATA_DIR = ORCHESTRATOR_DATA_DIR
 const RUNS_DIR = join(DATA_DIR, 'runs')
 
 interface StepResult {

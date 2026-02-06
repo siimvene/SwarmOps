@@ -1,3 +1,4 @@
+import { ORCHESTRATOR_DATA_DIR } from '~/server/utils/paths'
 /**
  * Task Registry - Track task states to prevent duplicate spawns
  * 
@@ -12,7 +13,7 @@
 import { readFile, writeFile, mkdir } from 'fs/promises'
 import { join } from 'path'
 
-const DATA_DIR = '/home/siim/swarmops/data/orchestrator'
+const DATA_DIR = ORCHESTRATOR_DATA_DIR
 const REGISTRY_FILE = join(DATA_DIR, 'task-registry.json')
 
 export type TaskStatus = 'pending' | 'running' | 'completed' | 'failed' | 'cancelled'

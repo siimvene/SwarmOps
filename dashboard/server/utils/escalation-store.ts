@@ -1,3 +1,4 @@
+import { ORCHESTRATOR_DATA_DIR } from '~/server/utils/paths'
 /**
  * EscalationStore - Manages escalations when workers fail after max retries
  * 
@@ -8,7 +9,7 @@
 import { readFile, writeFile, mkdir } from 'fs/promises'
 import { join, dirname } from 'path'
 
-const ESCALATIONS_PATH = '/home/siim/swarmops/data/orchestrator/escalations.json'
+const ESCALATIONS_PATH = join(ORCHESTRATOR_DATA_DIR, 'escalations.json')
 
 export type EscalationStatus = 'open' | 'resolved' | 'dismissed'
 export type EscalationSeverity = 'low' | 'medium' | 'high' | 'critical'

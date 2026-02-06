@@ -1,3 +1,4 @@
+import { PROJECTS_DIR as PROJ_DIR } from '~/server/utils/paths'
 /**
  * Spec File Watcher Plugin
  * 
@@ -10,7 +11,7 @@ import { readFile, stat } from 'fs/promises'
 import { join, basename, dirname } from 'path'
 import { readdirSync } from 'fs'
 
-const PROJECTS_DIR = '/home/siim/swarmops/projects'
+const PROJECTS_DIR = PROJ_DIR
 const DEBOUNCE_MS = 5000  // Wait 5s after file change before triggering
 
 // Track which projects we've already triggered to avoid duplicates

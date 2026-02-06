@@ -1,3 +1,4 @@
+import { ORCHESTRATOR_DATA_DIR } from '~/server/utils/paths'
 /**
  * ReviewState - Track review workflow state for phases
  * 
@@ -11,7 +12,7 @@
 import { readFile, writeFile, mkdir } from 'fs/promises'
 import { join } from 'path'
 
-const DATA_DIR = '/home/siim/swarmops/data/orchestrator'
+const DATA_DIR = ORCHESTRATOR_DATA_DIR
 const REVIEWS_DIR = join(DATA_DIR, 'reviews')
 
 export type ReviewDecision = 'approve' | 'fix' | 'escalate'

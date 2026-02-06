@@ -1,8 +1,9 @@
+import { ORCHESTRATOR_DATA_DIR } from '~/server/utils/paths'
 import { readFile, writeFile } from 'fs/promises'
 import { join } from 'path'
 import { requireAuth } from '../../../utils/security'
 
-const DATA_DIR = '/home/siim/swarmops/data/orchestrator'
+const DATA_DIR = ORCHESTRATOR_DATA_DIR
 
 interface PipelineStep {
   id: string

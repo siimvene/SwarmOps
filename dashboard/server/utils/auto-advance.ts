@@ -1,3 +1,4 @@
+import { DASHBOARD_PATH, SKILLS_DIR } from '~/server/utils/paths'
 import { readFile, writeFile, appendFile } from 'fs/promises'
 import { join } from 'path'
 import { randomUUID } from 'crypto'
@@ -223,7 +224,7 @@ export async function triggerPhaseWork(
   activePhaseWork.set(key, now)
   console.log(`[triggerPhaseWork] Starting ${key}`)
   
-  const dashboardPath = '/home/siim/swarmops/projects/swarmops-dashboard/src'
+  const dashboardPath = DASHBOARD_PATH
   
   switch (phase) {
     case 'spec': {
@@ -355,7 +356,7 @@ export async function triggerOrchestrator(
   projectName: string
 ): Promise<{ triggered: boolean; message: string; details?: any }> {
   const progressPath = join(projectPath, 'progress.md')
-  const dashboardPath = '/home/siim/swarmops/projects/swarmops-dashboard/src'
+  const dashboardPath = DASHBOARD_PATH
   
   let progressContent: string
   try {
@@ -525,7 +526,7 @@ function isWebDesignTask(task: any, projectName: string): boolean {
 async function loadWebDesignSkill(): Promise<string | null> {
   try {
     const { readFile } = await import('fs/promises')
-    const skillPath = '/home/siim/swarmops/data/orchestrator/skills/web-visuals/SKILL.md'
+    const skillPath = join(SKILLS_DIR, 'web-visuals/SKILL.md')
     const content = await readFile(skillPath, 'utf-8')
     // Remove YAML frontmatter
     const withoutFrontmatter = content.replace(/^---[\s\S]*?---\n*/, '')

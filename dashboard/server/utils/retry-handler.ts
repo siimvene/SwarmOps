@@ -1,3 +1,4 @@
+import { ORCHESTRATOR_DATA_DIR } from '~/server/utils/paths'
 /**
  * RetryHandler - Retry policy and attempt tracking for pipeline steps
  * 
@@ -8,7 +9,7 @@
 import { readFile, writeFile, mkdir } from 'fs/promises'
 import { join, dirname } from 'path'
 
-const RETRY_STATE_PATH = '/home/siim/swarmops/data/orchestrator/retry-state.json'
+const RETRY_STATE_PATH = join(ORCHESTRATOR_DATA_DIR, 'retry-state.json')
 
 export interface RetryPolicy {
   maxAttempts: number

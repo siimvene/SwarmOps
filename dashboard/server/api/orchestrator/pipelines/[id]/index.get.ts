@@ -1,7 +1,8 @@
+import { ORCHESTRATOR_DATA_DIR } from '~/server/utils/paths'
 import { readFile } from 'fs/promises'
 import { join } from 'path'
 
-const DATA_DIR = '/home/siim/swarmops/data/orchestrator'
+const DATA_DIR = ORCHESTRATOR_DATA_DIR
 
 interface Pipeline {
   id: string

@@ -19,7 +19,7 @@ import {
 } from '../types/session';
 
 /** Default storage path for active sessions */
-const DEFAULT_SESSIONS_PATH = '/home/siim/swarmops/data/orchestrator/sessions/active.json';
+const DEFAULT_SESSIONS_PATH = process.env.ORCHESTRATOR_DATA_DIR ? join(process.env.ORCHESTRATOR_DATA_DIR, 'sessions/active.json') : './data/orchestrator/sessions/active.json';
 
 /**
  * Session storage with file-based persistence and concurrent update safety

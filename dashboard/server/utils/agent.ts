@@ -75,10 +75,12 @@ curl -X POST http://localhost:3939/api/projects/${projectName}/interview \\
 Start by acknowledging the goal and asking your first clarifying question.`
 }
 
-export function buildPlannerPrompt(projectName: string, interviewMessages: any[]): string {
+export function buildPlannerPrompt(projectName: string, interviewMessages: any[], projectPath?: string): string {
   const conversation = interviewMessages
     .map(m => `${m.role.toUpperCase()}: ${m.content}`)
     .join('\n\n')
+  
+  const basePath = projectPath || `./projects/${projectName}`
   
   return `[SWARMOPS PLANNER] Project: ${projectName}
 
@@ -87,14 +89,14 @@ Based on this interview, create an implementation plan:
 ${conversation}
 
 **Your Task:**
-1. Create a detailed implementation plan in \`/home/siim/swarmops/projects/${projectName}/specs/IMPLEMENTATION_PLAN.md\`
+1. Create a detailed implementation plan in \`${basePath}/specs/IMPLEMENTATION_PLAN.md\`
 2. Break work into phases with clear tasks
 3. Update state.json to phase: "build", status: "ready"
 4. Post a summary to the activity feed
 
 **To update state:**
 \`\`\`
-echo '{"project":"${projectName}","phase":"build","iteration":0,"status":"ready","startedAt":"'$(date -Iseconds)'","history":[{"phase":"interview","completedAt":"'$(date -Iseconds)'"},{"phase":"planning","completedAt":"'$(date -Iseconds)'"}]}' > /home/siim/swarmops/projects/${projectName}/state.json
+echo '{"project":"${projectName}","phase":"build","iteration":0,"status":"ready","startedAt":"'$(date -Iseconds)'","history":[{"phase":"interview","completedAt":"'$(date -Iseconds)'"},{"phase":"planning","completedAt":"'$(date -Iseconds)'"}]}' > ${basePath}/state.json
 \`\`\`
 
 Create the plan now.`

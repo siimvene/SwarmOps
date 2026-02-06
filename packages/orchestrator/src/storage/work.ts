@@ -18,7 +18,7 @@ import {
 import { getWorkStateMachine, InvalidTransitionError } from '../state/work-state';
 
 /** Default storage directory for work ledger */
-const DEFAULT_WORK_DIR = '/home/siim/swarmops/data/orchestrator/work';
+const DEFAULT_WORK_DIR = process.env.ORCHESTRATOR_DATA_DIR ? join(process.env.ORCHESTRATOR_DATA_DIR, 'work') : './data/orchestrator/work';
 
 /**
  * JSONL record types for append-only ledger

@@ -1,3 +1,4 @@
+import { ORCHESTRATOR_DATA_DIR } from '~/server/utils/paths'
 /**
  * PhaseAdvancer - Advance pipeline to the next phase after review approval
  * 
@@ -285,7 +286,7 @@ export async function getProjectInfoFromRun(runId: string): Promise<{
   }
 
   // Fallback: Try to get from PipelineRunner's run state
-  const DATA_DIR = '/home/siim/swarmops/data/orchestrator'
+  const DATA_DIR = ORCHESTRATOR_DATA_DIR
   const runPath = join(DATA_DIR, 'runs', `${runId}.json`)
   
   try {

@@ -1,3 +1,4 @@
+import { ORCHESTRATOR_DATA_DIR } from '~/server/utils/paths'
 /**
  * Ledger Writer - Append pipeline/task events to ledger.jsonl
  */
@@ -5,7 +6,7 @@
 import { appendFile, mkdir } from 'fs/promises'
 import { join } from 'path'
 
-const DATA_DIR = '/home/siim/swarmops/data/orchestrator'
+const DATA_DIR = ORCHESTRATOR_DATA_DIR
 const LEDGER_PATH = join(DATA_DIR, 'ledger.jsonl')
 
 export type LedgerEntryType =

@@ -1,3 +1,4 @@
+import { ORCHESTRATOR_DATA_DIR } from '~/server/utils/paths'
 /**
  * PhaseCollector - Collect worker branches when all phase workers complete
  * 
@@ -19,7 +20,7 @@ import {
 
 const exec = promisify(execCallback)
 
-const DATA_DIR = '/home/siim/swarmops/data/orchestrator'
+const DATA_DIR = ORCHESTRATOR_DATA_DIR
 const PHASES_DIR = join(DATA_DIR, 'phases')
 
 export interface PhaseWorker {
@@ -45,7 +46,7 @@ export interface PhaseState {
   startedAt: string
   completedAt?: string
   // Project context for pipeline advancement
-  projectPath?: string  // Path where progress.md lives (e.g., /home/siim/swarmops/projects/{name})
+  projectPath?: string  // Path where progress.md lives (e.g., {projectsDir}/{name})
   projectName?: string  // Project name for API calls
 }
 

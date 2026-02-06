@@ -1,3 +1,4 @@
+import { ORCHESTRATOR_DATA_DIR } from '~/server/utils/paths'
 /**
  * ConflictResolverStore - Track active AI conflict resolver sessions
  * 
@@ -9,7 +10,7 @@
 import { readFile, writeFile, mkdir } from 'fs/promises'
 import { join } from 'path'
 
-const DATA_DIR = '/home/siim/swarmops/data/orchestrator'
+const DATA_DIR = ORCHESTRATOR_DATA_DIR
 const RESOLVERS_DIR = join(DATA_DIR, 'conflict-resolvers')
 
 export interface ConflictResolverContext {

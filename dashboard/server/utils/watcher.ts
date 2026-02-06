@@ -11,7 +11,7 @@ export interface FileChangeEvent {
 
 type ChangeHandler = (event: FileChangeEvent) => void
 
-const PROJECTS_DIR = process.env.PROJECTS_DIR || '/home/siim/swarmops/projects'
+const PROJECTS_DIR = process.env.PROJECTS_DIR || './projects'
 const DEBOUNCE_MS = 100
 
 class ProjectWatcher {

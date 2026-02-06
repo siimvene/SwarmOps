@@ -1,3 +1,4 @@
+import { DASHBOARD_PATH } from '~/server/utils/paths'
 import { appendFile } from 'fs/promises'
 import { join } from 'path'
 import { randomUUID } from 'crypto'
@@ -36,7 +37,7 @@ export default defineEventHandler(async (event) => {
 
   const body = await readBody<ReviewResultRequest>(event)
   const projectPath = join(config.projectsDir, name)
-  const dashboardPath = '/home/siim/swarmops/projects/swarmops-dashboard/src'
+  const dashboardPath = DASHBOARD_PATH
   
   // Log review result to activity
   const activityFile = join(projectPath, 'activity.jsonl')

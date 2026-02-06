@@ -9,7 +9,7 @@ import { resolve, isAbsolute } from 'path';
 import { Role } from '../types/role';
 
 /** Default base path for relative prompt files */
-const DEFAULT_PROMPTS_BASE = '/home/siim/swarmops/data/orchestrator/prompts';
+const DEFAULT_PROMPTS_BASE = process.env.ORCHESTRATOR_DATA_DIR ? join(process.env.ORCHESTRATOR_DATA_DIR, 'prompts') : './data/orchestrator/prompts';
 
 /**
  * Resolve instructions for a role
