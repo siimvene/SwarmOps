@@ -2,6 +2,10 @@
 const colorMode = useColorMode()
 colorMode.preference = 'dark'
 
+// Hide chat on login page
+const route = useRoute()
+const showChat = computed(() => route.path !== '/login')
+
 // Auth - check status on mount
 const { checkAuth } = useAuth()
 onMounted(() => {
@@ -16,10 +20,6 @@ watch(() => route.path, () => {
   document.body.scrollTop = 0
   document.documentElement.scrollTop = 0
 })
-
-// Hide chat on login page
-const route = useRoute()
-const showChat = computed(() => route.path !== '/login')
 
 // Chat state - persists across navigation
 const chatOpen = ref(false)
