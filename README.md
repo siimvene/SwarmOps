@@ -114,14 +114,77 @@ Each role includes detailed instructions. Customize in the dashboard under **Rol
 
 ## Pipeline Flow
 
-Projects move through phases automatically:
+```mermaid
+flowchart TB
+    subgraph Interview["📋 Interview Phase"]
+        A[New Project] --> B[Interview Agent]
+        B <--> C[User Chat]
+        C --> D{Requirements\nComplete?}
+        D -->|No| B
+        D -->|Yes| E[interview.json\ncomplete: true]
+    end
 
-1. **Interview** → Spec when `interview.json` has `complete: true`
-2. **Spec** → Build when `specs/IMPLEMENTATION_PLAN.md` exists
-3. **Build** → Review when all tasks in `progress.md` are done
-4. **Review** → Complete when all reviewers approve
+    subgraph Spec["🏗️ Specification Phase"]
+        E --> F[Architect Agent]
+        F --> G[Design Solution]
+        G --> H[Decompose into Tasks]
+        H --> I[IMPLEMENTATION_PLAN.md]
+        I --> J[progress.md with\nTask Graph]
+    end
 
-The phase watcher polls every 30 seconds and advances projects when conditions are met.
+    subgraph Build["⚡ Build Phase"]
+        J --> K{Ready Tasks?}
+        K -->|Yes| L[Spawn Workers\nin Parallel]
+        L --> M1[Worker 1\nWorktree A]
+        L --> M2[Worker 2\nWorktree B]
+        L --> M3[Worker N\nWorktree N]
+        M1 --> N1[Task Complete]
+        M2 --> N2[Task Complete]
+        M3 --> N3[Task Complete]
+        N1 & N2 & N3 --> O[Merge to Main]
+        O --> P{More Tasks?}
+        P -->|Yes| K
+        P -->|No| Q[All Tasks Done]
+    end
+
+    subgraph Review["🔍 Review Phase"]
+        Q --> R[Code Reviewer]
+        R --> S{Approved?}
+        S -->|No| T[Builder Fixes]
+        T --> R
+        S -->|Yes| U[Security Reviewer]
+        U --> V{Approved?}
+        V -->|No| W[Builder Fixes]
+        W --> U
+        V -->|Yes| X[Design Reviewer]
+        X --> Y{Approved?}
+        Y -->|No| Z[Builder Fixes]
+        Z --> X
+        Y -->|Yes| AA[All Reviews Pass]
+    end
+
+    subgraph Complete["✅ Complete"]
+        AA --> BB[Merge to Main]
+        BB --> CC[Project Complete]
+    end
+
+    style Interview fill:#e8f5e9,stroke:#4caf50
+    style Spec fill:#e3f2fd,stroke:#2196f3
+    style Build fill:#fff3e0,stroke:#ff9800
+    style Review fill:#fce4ec,stroke:#e91e63
+    style Complete fill:#f3e5f5,stroke:#9c27b0
+```
+
+### Phase Transitions
+
+| From | To | Trigger |
+|------|-----|---------|
+| Interview | Spec | `interview.json` has `complete: true` |
+| Spec | Build | `specs/IMPLEMENTATION_PLAN.md` created |
+| Build | Review | All tasks in `progress.md` marked `[x]` |
+| Review | Complete | All reviewers approve |
+
+The **phase watcher** polls every 30 seconds and advances projects automatically when conditions are met.
 
 ## Documentation
 
