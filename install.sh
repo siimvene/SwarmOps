@@ -49,22 +49,22 @@ echo -e "${YELLOW}→ Building for production...${NC}"
 pnpm build
 echo -e "${GREEN}✓ Production build complete${NC}"
 
-# Create .env if not exists
+# Create .env if not exists (with absolute paths for production)
 if [ ! -f .env ]; then
-    if [ -f .env.example ]; then
-        cp .env.example .env
-        echo -e "${GREEN}✓ Created .env from .env.example${NC}"
-    else
-        cat > .env << 'EOF'
+    cat > .env << EOF
 # SwarmOps Configuration
 HOST=0.0.0.0
 PORT=3000
-PROJECTS_DIR=../projects
-ORCHESTRATOR_DATA_DIR=../data/orchestrator
+
+# Absolute paths (required for production builds)
+PROJECTS_DIR=$SCRIPT_DIR/projects
+ORCHESTRATOR_DATA_DIR=$SCRIPT_DIR/data/orchestrator
+
+# OpenClaw Gateway
 OPENCLAW_GATEWAY_URL=http://127.0.0.1:18789
+# OPENCLAW_GATEWAY_TOKEN=your-token-here
 EOF
-        echo -e "${GREEN}✓ Created default .env${NC}"
-    fi
+    echo -e "${GREEN}✓ Created .env with absolute paths${NC}"
 else
     echo -e "${GREEN}✓ .env already exists${NC}"
 fi
