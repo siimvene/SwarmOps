@@ -1,9 +1,10 @@
 import { readdir, unlink } from 'fs/promises'
 import { join } from 'path'
+import { PROJECTS_DIR } from '../../utils/paths'
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig(event)
-  const projectsDir = config.projectsDir || process.env.PROJECTS_DIR || './projects'
+  const projectsDir = config.projectsDir || PROJECTS_DIR
 
   try {
     const entries = await readdir(projectsDir, { withFileTypes: true })

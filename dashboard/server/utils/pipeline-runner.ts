@@ -34,9 +34,9 @@ import {
   DEFAULT_RETRY_POLICY,
 } from './retry-handler'
 import { createEscalation } from './escalation-store'
+import { ORCHESTRATOR_DATA_DIR } from './paths'
 
-const DATA_DIR = process.env.ORCHESTRATOR_DATA_DIR || './data/orchestrator'
-const RUNS_DIR = join(DATA_DIR, 'runs')
+const RUNS_DIR = join(ORCHESTRATOR_DATA_DIR, 'runs')
 
 export interface PipelineStep {
   id: string

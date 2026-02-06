@@ -1,6 +1,7 @@
 import { watch, type FSWatcher } from 'fs'
 import { readdir, stat } from 'fs/promises'
 import { join, relative, basename } from 'path'
+import { PROJECTS_DIR } from './paths'
 
 export interface FileChangeEvent {
   type: 'project-update'
@@ -10,8 +11,6 @@ export interface FileChangeEvent {
 }
 
 type ChangeHandler = (event: FileChangeEvent) => void
-
-const PROJECTS_DIR = process.env.PROJECTS_DIR || './projects'
 const DEBOUNCE_MS = 100
 
 class ProjectWatcher {

@@ -1,5 +1,6 @@
 import { readdir, readFile } from 'fs/promises'
 import { join } from 'path'
+import { PROJECTS_DIR } from '../../utils/paths'
 
 interface ActivityEvent {
   id: string
@@ -22,7 +23,7 @@ interface ActivityEvent {
 
 export default defineEventHandler(async (event): Promise<ActivityEvent[]> => {
   const config = useRuntimeConfig(event)
-  const projectsDir = config.projectsDir || process.env.PROJECTS_DIR || './projects'
+  const projectsDir = config.projectsDir || PROJECTS_DIR
 
   try {
     const entries = await readdir(projectsDir, { withFileTypes: true })
