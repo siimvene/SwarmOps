@@ -75,19 +75,21 @@ SwarmOps/
 
 ### Roles
 
-Define agent roles in `data/orchestrator/roles.json`:
+The install script sets up 9 pre-configured roles in `data/orchestrator/roles.json`:
 
-```json
-{
-  "builder": {
-    "id": "builder",
-    "name": "Builder",
-    "model": "anthropic/claude-sonnet-4",
-    "thinking": "low",
-    "instructions": "You are a software developer..."
-  }
-}
-```
+| Role | Model | Purpose |
+|------|-------|---------|
+| `architect` | Claude Opus | High-level system design and planning |
+| `task-decomposer` | Claude Opus | Break down requirements into parallel tasks |
+| `builder` | Claude Sonnet | Implement features and write code |
+| `reviewer` | Claude Opus | Code review and quality gates |
+| `security-reviewer` | Claude Opus | Security-focused vulnerability review |
+| `designer` | Claude Sonnet | UI/UX design review |
+| `researcher` | Claude Opus | Deep dives and competitive analysis |
+| `workflow-coordinator` | Claude Sonnet | Multi-step workflow management |
+| `quant-analyst` | Claude Sonnet | Trading strategies and market analysis |
+
+Each role includes detailed instructions. Customize in the dashboard under **Roles**.
 
 ### Environment Variables
 

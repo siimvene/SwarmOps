@@ -73,41 +73,12 @@ cd "$SCRIPT_DIR"
 mkdir -p data/orchestrator/prompts
 mkdir -p projects
 
-# Create example roles.json if not exists
+# Create roles.json from example if not exists
 if [ ! -f data/orchestrator/roles.json ]; then
-    cat > data/orchestrator/roles.json << 'EOF'
-{
-  "architect": {
-    "id": "architect",
-    "name": "Architect",
-    "model": "anthropic/claude-opus-4-5",
-    "thinking": "high",
-    "description": "Designs system architecture and creates implementation plans"
-  },
-  "builder": {
-    "id": "builder",
-    "name": "Builder",
-    "model": "anthropic/claude-sonnet-4",
-    "thinking": "low",
-    "description": "Implements features and writes code"
-  },
-  "reviewer": {
-    "id": "reviewer",
-    "name": "Code Reviewer",
-    "model": "anthropic/claude-opus-4-5",
-    "thinking": "high",
-    "description": "Reviews code for quality, bugs, and best practices"
-  },
-  "security-reviewer": {
-    "id": "security-reviewer",
-    "name": "Security Reviewer",
-    "model": "anthropic/claude-opus-4-5",
-    "thinking": "high",
-    "description": "Reviews code for security vulnerabilities"
-  }
-}
-EOF
-    echo -e "${GREEN}✓ Created example roles.json${NC}"
+    if [ -f data/orchestrator/roles.example.json ]; then
+        cp data/orchestrator/roles.example.json data/orchestrator/roles.json
+        echo -e "${GREEN}✓ Created roles.json from example (9 roles included)${NC}"
+    fi
 fi
 
 echo
