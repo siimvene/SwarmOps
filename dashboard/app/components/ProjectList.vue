@@ -66,9 +66,9 @@ function getStatusColor(status: ProjectStatus): string {
     </button>
 
     <!-- Empty -->
-    <div v-else-if="!projects?.length" class="p-4 text-center">
-      <UIcon name="i-heroicons-folder-open" class="w-6 h-6 mx-auto mb-2" style="color: var(--swarm-text-muted);" />
-      <p class="text-xs" style="color: var(--swarm-text-muted);">No projects</p>
+    <div v-else-if="!projects?.length" class="empty-state">
+      <UIcon name="i-heroicons-folder-open" class="empty-icon" />
+      <p class="empty-text">No projects</p>
     </div>
 
     <!-- Project list - simple items like Kleidia nav -->
@@ -199,5 +199,25 @@ function getStatusColor(status: ProjectStatus): string {
   width: 96px;
   border-radius: 4px;
   background: var(--swarm-bg-hover);
+}
+
+.empty-state {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  margin: 2px 8px;
+  color: var(--swarm-text-muted);
+  font-size: 13px;
+}
+
+.empty-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.empty-text {
+  font-size: 13px;
 }
 </style>
